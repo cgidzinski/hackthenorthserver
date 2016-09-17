@@ -12,18 +12,16 @@ module.exports = function(app, express, transporter) {
  
   app.post('/api/register', function(req, res) {
 
-    var fname = req.body.fname;
-    var lname = req.body.lname;
     var email = req.body.email.toLowerCase();
 
     DB.User.find({'public.email': email}, function(err, user) {
       if (user.length == 0) {
         var user = new DB.User();
-		var token = jwt.sign({ _id: user._id,name:user.public.name,email:user.public.email}, app.get('superSecret'), {expiresIn: "24hr"});        
-		user.public.name = fname + " " + lname;
+		user.public.name = req.body.name;
         user.private.password = user.generateHash(req.body.password);
         user.public.email = email;
         user.save();
+        var token = jwt.sign({ _id: user._id,name:user.public.name,email:user.public.email}, app.get('superSecret'), {expiresIn: "24hr"});        
         res.json({
           success: true,
           token: token
