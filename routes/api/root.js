@@ -69,7 +69,8 @@ DB.Memory.find({}, function(err, memory) {
    app.post('/api/memory',isLoggedIn, function(req, res) {
 var memory = new DB.Memory();
     memory.author = req.user._id;
-    memory.location = req.body.location;
+    memory.lat = req.body.lat;
+    memory.lon = req.body.lon;
     memory.data = req.body.data;
     memory.type = req.body.type;
         memory.save();
