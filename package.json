@@ -1,0 +1,21 @@
+{
+  "name": "htn_server",
+  "version": "1.0.0",
+  "description": "htn server",
+  "main": "server.js",
+  "dependencies": {
+    "async": "^1.5.2",
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.0.2",
+    "bson": "^0.5.5",
+    "express": "^4.0.0",
+    "jsonwebtoken": "*",
+    "mongoose": "3.8.39",
+    "morgan": "^1.7.0",
+    "serve-favicon": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "server": "node server.js"
+  }
+}
