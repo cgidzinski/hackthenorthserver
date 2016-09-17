@@ -14,7 +14,6 @@ var userSchema = new mongoose.Schema({
         password     : {type: String, default: "" }
     }
 })
-
 // generating a hash
 userSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
@@ -27,7 +26,18 @@ userSchema.methods.validPassword = function(password) {
 
 var User = mongoose.model('User', userSchema);
 
+var memorySchema = new mongoose.Schema({
+
+        name         : {type: String, default: "" },
+        data         : {type: String, default: "" },
+        type         : {type: String, default: "" }
+   
+})
+var Memory = mongoose.model('Memory', memorySchema);
+
+
 
 module.exports = {
-    User: User
+    User: User,
+    Memory:Memory
 };

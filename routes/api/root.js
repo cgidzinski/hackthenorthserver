@@ -60,6 +60,21 @@ module.exports = function(app, express, transporter) {
    res.json({ success: true, message: req.user}); 
   });
 
+   app.get('/api/memory',isLoggedIn, function(req, res) {
+DB.Memory.find({}, function(err, memory) {
+   res.json({ success: true, message: memory}); 
+  });
+});
+
+   app.post('/api/memory',isLoggedIn, function(req, res) {
+var memory = new DB.Memory();
+    memory.name = "titlemem";
+    memory.data = "somememory";
+    memory.type = "text";
+        memory.save();
+     res.json({ success: true, message: memory});    
+});   
+
   app.all('/api/*', function(req, res) {
     res.status(404).send({ 
         success: false,
