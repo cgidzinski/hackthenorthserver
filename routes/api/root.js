@@ -4,7 +4,7 @@ var jwt = require('jsonwebtoken');
 //
 
 
-module.exports = function(app, express, transporter) {
+module.exports = function(app, express) {
 
 
 
@@ -68,10 +68,10 @@ DB.Memory.find({}, function(err, memory) {
 
    app.post('/api/memory',isLoggedIn, function(req, res) {
 var memory = new DB.Memory();
-    memory.name = "titlemem";
-    memory.location = "locamem";
-    memory.data = "somememory";
-    memory.type = "text";
+    memory.author = req.user._id;
+    memory.location = req.body.location;
+    memory.data = req.body.data;
+    memory.type = req.body.type;
         memory.save();
      res.json({ success: true, message: memory});    
 });   
