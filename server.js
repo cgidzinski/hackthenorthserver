@@ -1,7 +1,6 @@
 // server.js
 
 // set up ======================================================================
-var cors = require('cors')
 var express  = require('express');
 var app      = express();
 
@@ -17,19 +16,18 @@ var favicon = require('serve-favicon');
 
 
 // CORS =======================================================================
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With,x-access-token');
-// if ('OPTIONS' == req.method) {
-//       res.sendStatus(200);
-//     }
-//     else {
-//       next();
-//     }
-// });
-// app.enable('trust proxy');
-app.use(cors());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With,x-access-token');
+if ('OPTIONS' == req.method) {
+      res.sendStatus(200);
+    }
+    else {
+      next();
+    }
+});
+app.enable('trust proxy');
 
 // configuration ===============================================================
 mongoose.connect(config.url); // connect to our database
