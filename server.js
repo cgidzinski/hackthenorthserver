@@ -27,7 +27,7 @@ if ('OPTIONS' == req.method) {
       next();
     }
 });
-app.enable('trust proxy');
+//app.enable('trust proxy');
 
 // configuration ===============================================================
 mongoose.connect(config.url); // connect to our database
