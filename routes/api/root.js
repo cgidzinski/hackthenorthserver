@@ -68,9 +68,9 @@ DB.Memory.find({}, function(err, memory) {
 
    app.post('/api/memory',isLoggedIn, function(req, res) {
     
-DB.User.findOne({_id:'req.user._id'}, function(err, user) {
-console.log(req.user._id)
-console.log(user)
+DB.User.findOne({_id:req.user._id}, function(err, user) {
+console.log(req.user._id);
+console.log(user.public.name);
 var memory = new DB.Memory();
     memory.author = "Colin";
     memory.lat = req.body.lat;
