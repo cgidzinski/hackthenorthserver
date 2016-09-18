@@ -79,7 +79,7 @@ var memory = new DB.Memory();
         memory.save();
      res.json({ success: true, message: memory});    
 
-}
+});
 
 
 
