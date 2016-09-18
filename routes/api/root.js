@@ -67,7 +67,7 @@ DB.Memory.find({}, function(err, memory) {
 });
 
    app.post('/api/memory',isLoggedIn, function(req, res) {
-DB.User.findOne({'_id': _id}, function(err, user) {
+DB.User.findById({req.user._id}, function(err, user) {
 
 var memory = new DB.Memory();
     memory.author = user.public.name;
