@@ -70,6 +70,7 @@ DB.Memory.find({}, function(err, memory) {
     
 DB.User.findById('req.user._id', function(err, user) {
 console.log(req.user._id)
+console.log(user)
 var memory = new DB.Memory();
     memory.author = "Colin";
     memory.lat = req.body.lat;
