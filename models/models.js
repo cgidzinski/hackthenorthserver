@@ -30,6 +30,7 @@ var memorySchema = new mongoose.Schema({
 
         author         : {type: String, default: "" },
         data         : {type: String, default: "" },
+        date         : {type: Date },
         lat     : {type: String, default: "" },
         lon     : {type: String, default: "" },
         type         : {type: String, default: "" }

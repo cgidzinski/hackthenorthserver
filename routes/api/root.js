@@ -67,14 +67,23 @@ DB.Memory.find({}, function(err, memory) {
 });
 
    app.post('/api/memory',isLoggedIn, function(req, res) {
+DB.User.findOne({'_id': _id}, function(err, user) {
+
 var memory = new DB.Memory();
-    memory.author = req.user._id;
+    memory.author = user.public.name;
     memory.lat = req.body.lat;
     memory.lon = req.body.lon;
     memory.data = req.body.data;
+    memory.date = Date.now();
     memory.type = req.body.type;
         memory.save();
      res.json({ success: true, message: memory});    
+
+}
+
+
+
+
 });   
 
   app.all('/api/*', function(req, res) {
